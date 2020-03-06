@@ -1,0 +1,51 @@
+{
+  "name": "notecards",
+  "version": "1.0.0",
+  "description": "MERN flash cards app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "app": "nodemon index.js --ignore client",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/engineerKev/noteCardsApp.git"
+  },
+  "keywords": [
+    "flash",
+    "cards",
+    "modals",
+    "react",
+    "hooks",
+    "mern",
+    "mongodb",
+    "apollo",
+    "graphql"
+  ],
+  "author": "Kevin Ruiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/engineerKev/noteCardsApp/issues"
+  },
+  "homepage": "https://github.com/engineerKev/noteCardsApp#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "express-session": "^1.17.0",
+    "graphql": "^14.6.0",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.9.2",
+    "webpack": "^4.42.0",
+    "webpack-dev-middleware": "^3.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
