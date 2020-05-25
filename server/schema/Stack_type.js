@@ -11,8 +11,8 @@ const StackType = new GraphQLObjectType({
         title: { type: GraphQLString },
         notecards: {
             type: new GraphQLList(NoteCardType),
-            resolve(parentValue) {
-                return Stack.findNoteCards(parentvalue.id);
+            resolve(parentValue, args) {
+                return Stack.findNoteCards(parentValue.id);
             }
         }
     })

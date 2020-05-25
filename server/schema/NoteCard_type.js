@@ -8,7 +8,7 @@ const {
     GraphQLString
 } = graphql;
 
-const NoteCard = mongoose.model('notecard');
+const Stack = mongoose.model('stack');
 
 const NoteCardType = new GraphQLObjectType({
     name: 'NoteCardType',
@@ -16,14 +16,19 @@ const NoteCardType = new GraphQLObjectType({
         id: { type: GraphQLID },
         question: { type: GraphQLString },
         answer: { type: GraphQLString },
-        stack: {
+        parentStack: {
             type: require('./Stack_type'),
             resolve(parentValue) {
-                return NoteCard.findById(parentValue).populate('stack')
-                    .then(notecard => {
-                        console.log(notecard);
-                        return notecard.stack;
-                    });
+                return Stack.find({})
+                    .then(stacks => {
+                        let ownerStack = null;
+                        stacks.forEach(stack => {
+                            if (stack.noteCards.indexOf(parentValue.id) !== -1) {
+                                ownerStack = stack;
+                            }
+                        });
+                        return ownerStack
+                    })
             }
         }
 

@@ -9,12 +9,20 @@ const StackType = require('./Stack_type');
 const mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
-        addNoteCard: {
+        createStack: {
+            type: StackType,
+            args: {
+                title: { type: GraphQLString }
+            },
+            resolve(parentValue, { title }) {
+                return (new Stack({ title })).save()
+            }
+        },
+        createNoteCard: {
             type: NoteCardType,
             args: {
                 question: { type: GraphQLString },
                 answer: { type: GraphQLString }
-                // noteCardId: { type: { GraphQLID } }
             },
             resolve(parentValue, { question, answer }) {
                 return (new NoteCard({ question, answer })).save()
@@ -23,12 +31,11 @@ const mutation = new GraphQLObjectType({
         addNoteCardToStack: {
             type: StackType,
             args: {
-                question: { type: GraphQLString },
-                answer: { type: GraphQLString },
-                stackId: { type: GraphQLID }
+                noteCardId: { type: GraphQLString },
+                stackId: { type: GraphQLString }
             },
-            resolve(parentValue, { answer, question, stackId }) {
-                return Stack.addNoteCard(stackId, question, answer)
+            resolve(parentValue, { stackId, noteCardId }) {
+                return Stack.addNoteCard(stackId, noteCardId)
             }
         },
         deleteNoteCard: {

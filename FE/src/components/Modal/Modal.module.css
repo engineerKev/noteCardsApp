@@ -1,0 +1,55 @@
+.Modal {
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 2%;
+    padding: 16px;
+    left: 15%;
+    top: 25%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    transform: translateY(-100vh);
+    opacity: 0;
+
+}
+
+.Modal.Visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.X{
+    color: #505050;
+    font-size: 24px;
+    border: transparent;
+    cursor: pointer;
+    display: inline-block;
+    background-color: transparent;
+    width: 100%;
+    text-align: right;
+}
+
+.X::after {
+    content: " ";
+    height: 24px;
+    background-color: transparent;
+}
+.X:focus {
+    outline: none;
+}
+.Like {
+    color: rgb(240, 0, 240);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}

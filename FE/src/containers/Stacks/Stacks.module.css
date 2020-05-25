@@ -1,0 +1,16 @@
+.StacksContainer {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-top: 56px;
+     padding: 0 12px;
+}
+.StackItem {
+    border-radius: 2%;
+    border: solid 1px #C0C0C0;
+    width: 200px;
+    height: 100px;
+    box-shadow: 5px 5px 5px #777;
+    margin: 0 12px;
+    cursor: pointer;
+}

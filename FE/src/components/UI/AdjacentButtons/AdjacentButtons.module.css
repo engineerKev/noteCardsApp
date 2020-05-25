@@ -1,0 +1,10 @@
+.Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.Container button {
+    margin: 1%;
+}

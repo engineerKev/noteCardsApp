@@ -7,6 +7,10 @@ const NotecardSchema = new Schema({
    },
    answer: {
        type: String
+   },
+   parentStack: {
+       type: Schema.Types.ObjectId,
+       ref: 'parentStack'
    }
 });
 

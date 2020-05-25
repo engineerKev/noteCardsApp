@@ -1,11 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const mongoUri = require('./creds');
 const models = require('./models');
 const expressGraphQL = require('express-graphql');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const schema = require('./schema/schema');
-
 
 const app = express();
 
@@ -18,7 +18,8 @@ const connectDB = async () => {
         await mongoose.connect(
             mongoUri,
             {
-                useNewUrlparser: true
+                useNewUrlParser: true,
+                useUnifiedTopology: true
             }
         );
 
@@ -31,11 +32,26 @@ const connectDB = async () => {
 
 connectDB();
 
+// const errorFn = (error) => {
+//     console.log(error.GraphQLError);
+//     return {
+//         ...error,
+//         path: error.path,
+//         locations: error.locations,
+//         message: error.message
+//     }
+// }
+
+app.use(cors({ origin: true, credentials: true }));
+
+app.use(express.json({ extended: false }));
+
 app.use(bodyParser.json());
 
 app.use('/graphql', expressGraphQL({
     schema,
-    graphiql: true
+    graphiql: true,
+    // customFormatErrorFn: errorFn 
 }));
 
 app.get('/', (req, res) => res.send('Hello world!'));
