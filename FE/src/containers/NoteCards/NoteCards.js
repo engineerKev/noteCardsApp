@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { onErrorFunc } from '../../hooks/useGraphQLErrors';
 import { useQuery } from '@apollo/react-hooks';
 import { useLocation } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 import Modal from '../../components/Modal/Modal';
 import Button from '../../components/UI/Button/Button';
@@ -18,6 +19,7 @@ const NoteCards = (props) => {
 
     });
     const [modalContent, setModalContent] = useState(null);
+    const history = useHistory();
 
     //pass stackId in route
     const location = useLocation();
@@ -87,6 +89,29 @@ const NoteCards = (props) => {
             setServerError(true);
         }
     }, [noteCardsInStackError]);
+
+    useEffect(() => {
+        const localStorageStackId = localStorage.getItem("currentStack");
+
+        debugger;
+        
+        if(!localStorageStackId && stackId) {
+            localStorage.setItem("currentStack", stackId);
+
+        } 
+        
+        if (localStorageStackId && stackId && localStorageStackId !== stackId) {
+            localStorage.setItem("currentStack", stackId);
+        }
+
+        if (!stackId && localStorageStackId) {
+            history.push({
+                pathname: '/notecards',
+                search: `?stackId=${localStorageStackId}`
+            });
+        }
+
+    }, [stackId])
 
     useEffect(() => {
         let content = null;

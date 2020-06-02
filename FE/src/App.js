@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 
-import './App.css';
 import CreateNewNoteCard from './containers/Create/CreateNewNoteCard/CreateNewNoteCard';
 import CreateNewStack from './containers/Create/CreateNewStack/CreateNewStack';
 import Stacks from './containers/Stacks/Stacks';
